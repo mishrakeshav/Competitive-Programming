@@ -1,5 +1,4 @@
-a = "keshav"
-a.is
+
 def camelcase(s):
     count = 1
     for i in s:

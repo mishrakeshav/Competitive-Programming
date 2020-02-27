@@ -23,8 +23,8 @@ def isValid(y,x,n):
                 return False
     return True
 
-def solve():
-    global grid
+def solve(grid):
+    
     for i in range(9):
         for j in range(9):
             if grid[i][j] == 0:
@@ -34,6 +34,8 @@ def solve():
                         solve()
                         grid[i][j] = 0 
                 return
-    print(np.matrix(grid))
+    
+    print(np.matrix(grid)) 
+    
 
-solve()
+solve(grid)

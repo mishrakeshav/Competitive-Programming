@@ -21,6 +21,8 @@ for t in range(int(input())):
     if maxsubsequence == 0 :
         maxsubsequence = minimum
         
+
+
         
     print(newMax, maxsubsequence)
 

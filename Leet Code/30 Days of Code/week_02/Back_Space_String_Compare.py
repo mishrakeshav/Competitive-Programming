@@ -1,24 +1,18 @@
+import itertools
 class Solution:
     def backspaceCompare(self, S: str, T: str) -> bool:
         
-        stack1 = []
-        stack2 = []
-        for i in S:
-            if i == "#":
-                if len(stack1):
-                    stack1.pop()
-            else:
-                stack1.append(i)
-        for j in T:
-            if j == "#":
-                if len(stack2):
-                    stack2.pop()
-            else:
-                stack2.append(j)
-        if stack1 == stack2:
-            return 'true'
-        else:
-            return 'false'
+        def compare(string):
+            skip = 0
+            for x in reversed(string):
+                if x == "#":
+                    skip += 1
+                elif skip:
+                    skip -=1
+                else:
+                    yield x
+        
+        return all(x==y for x,y in itertools.izip_longest(compare(S),compare(T)))
 
 c = Solution()
 print(c.backspaceCompare("a#c","b"))

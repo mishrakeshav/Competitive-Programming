@@ -1,37 +1,25 @@
 from sys import stdin
 input = stdin.readline
+def getSign(n):
+    if n > 0:
+        return 1
+    else:
+        return -1
 for t in range(int(input())):
     n = int(input())
     a = list(map(int,input().split()))
-    s = 0
     i = 0
-    m = a[0]
-    while i != n-1 and a[i] < 0:
-        m = max(a[i],m)
-        i += 1
-    if i == n-1:
-        s = m
-    alt = 1
-    while i!=n-1:
+    j = 0
+    s = 0
+    while i < n:
+        curr = a[i]
+        j = i
+        while j < n and getSign(a[i]) == getSign(a[j]):
+            curr = max(curr,a[j])
+            j += 1
+        s += curr 
+        i = j 
         
-        if alt == 1:
-            while i != n-1 and a[i] < 0:
-                i += 1
-            prev = a[i]
-            while i != n-1 and a[i] > 0 :
-                prev = max(a[i], prev)
-                i += 1
-            s += prev
-            alt = 0
-        else:
-            while i != n-1 and a[i] > 0:
-                i += 1
-            prev = a[i]
-            while i != n-1 and a[i] < 0:
-                if a[i] < 0:
-                    prev = max(a[i], prev)
-                i += 1
-            s += prev
-            alt = 1
+
     print(s)
 

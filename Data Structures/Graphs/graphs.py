@@ -3,12 +3,33 @@ class Vertex:
     def __init__(self, key):
         self.id = key
         self.connectedTo = dict() 
+        self.distance = -1 
+        self.predecessor = None
+        self.color = "white"
     
     def addNeighbor(self,nbr,weight = 0):
         self.connectedTo[nbr] = weight
     
     def __str__(self):
         return str(self.id) + " connectedTo: " + str([x.id for x in self.connectedTo])
+    
+    def setDistance(self,d):
+        self.distance = d
+    
+    def setPred(self,p):
+        self.predecessor = p
+        
+    def setColor(self,color):
+        self.color = color
+
+    def getDistance(self):
+        return self.distance
+    
+    def getPred(self):
+        return self.predecessor
+
+    def setColor(self):
+        return self.color 
     
     def getConnections(self):
         return self.connectedTo.keys()

@@ -1,3 +1,4 @@
+
 class Solution:
     def solve(self, s):
         # Write your code here

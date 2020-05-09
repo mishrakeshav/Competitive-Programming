@@ -3,18 +3,20 @@ for t in range(int(input())):
     string = input()
     stack = [] 
     count = 0 
-    ans = 0
-    for i in range(len(string)):
-        
-        if string[i] == "<":
-            count += 1 
+    max_count = 0
+
+    for i in string:
+        if i == "<":
+            stack.append(i)
         else:
-            count -= 1 
-            if count == 0 :
-                ans = max(ans,i+1)
-            elif count < 0:
-                break
-            
-
-
-    print(ans)
+            if len(stack):
+                stack.pop()
+                count += 1
+            else:
+                stack = []
+                max_count = max(count,max_count)
+                count = 0
+        
+    max_count = max(count,max_count)
+    print(max_count)
+    

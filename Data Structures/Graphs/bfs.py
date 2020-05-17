@@ -7,6 +7,7 @@ def bfs(g,start):
     start.setPred(None)
     queue = deque()
     queue.appendleft(start)
+    
     while len(queue):
         currVertex = queue.popleft()
         for nbr in currVertex.getConnections():

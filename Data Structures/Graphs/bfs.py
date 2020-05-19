@@ -1,19 +1,19 @@
 from collections import deque
 
 
-def bfs(g,start):
-
-    start.setDistance(0)
-    start.setPred(None)
+def bfs(g, srcNode, dstNode):
+    if srcNode == dstNode:
+        return
     queue = deque()
-    queue.appendleft(start)
-    
-    while len(queue):
+    queue.append(g.getVertex(srcNode))
+    while queue:
         currVertex = queue.popleft()
+        if currVertex.val == dstNode:
+            return
         for nbr in currVertex.getConnections():
-            if (nbr.getColor() == "white"):
-                nbr.setColor("gray")
-                nbr.setDistance(currVertex.getDistance() + 1)
-                nbr.setPred(currVertex)
-                queue.appendleft(nbr)
+            node = g.getVertex(nbr)
+            if node.getColor() == "white":
+                node.setColor("grey")
+                node.setPrevious(currVertex)
+                queue.append(node)
         currVertex.setColor("black")

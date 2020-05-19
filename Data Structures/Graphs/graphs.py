@@ -1,74 +1,75 @@
-# Implementation of Graph Data Structure
+import math
+
+
 class Vertex:
-    def __init__(self, key):
-        self.id = key
-        self.connectedTo = dict()
-        self.distance = -1
-        self.predecessor = None
-        self.color = "white"
-
-    def addNeighbor(self, nbr, weight=0):
-        self.connectedTo[nbr] = weight
-
-    def __str__(self):
-        return str(self.id) + " connectedTo: " + str([x.id for x in self.connectedTo])
-
-    def setDistance(self, d):
-        self.distance = d
-
-    def setPred(self, p):
-        self.predecessor = p
+    def __init__(self, val):
+        self.val = val
+        self.connections = dict()
+        self.visited = False
+        self.color = 'white'
+        self.previous = None
+        self.distance = math.inf
 
     def setColor(self, color):
         self.color = color
 
+    def setVisited(self, visited):
+        self.visited = visited
+
+    def setPrevious(self, val):
+        self.previous = val
+
+    def setDistance(self, val):
+        self.distance = val
+
+    def addConnection(self, node, w=0):
+        self.connections[node] = w
+
+    def getColor(self):
+        return self.color
+
+    def isVisited(self):
+        return self.visited
+
+    def getConnections(self):
+        return self.connections
+
     def getDistance(self):
         return self.distance
 
-    def getPred(self):
-        return self.predecessor
+    def getEdgeWeight(self, val):
+        return self.connections.get(val)
 
-    def setColor(self):
-        return self.color
-
-    def getConnections(self):
-        return self.connectedTo.keys()
-
-    def getId(self):
-        return self.id
-
-    def getWeight(self, nbr):
-        return self.connectedTo[nbr]
+    def getPrevious(self):
+        return self.previous
 
 
 class Graph:
-    def __init__(self):
-        self.vertList = dict()
-        self.numVertices = 0
+    def __init__(self, undirected=True):
+        self.g = dict()
+        self.undirected = undirected
 
-    def addVertex(self, key):
-        self.numVertices += 1
-        self.vertList[key] = Vertex(key)
-        return self.vertList[key]
+    def addVertex(self, val):
+        self.g[val] = Vertex(val)
 
-    def getVertex(self, key):
-        if key in self.vertList:
-            return self.vertList[key]
-        else:
-            return None
+    def addEdge(self, src, dst, w=0):
+        if src not in self.g:
+            self.g[src] = Vertex(src)
+        if dst not in self.g:
+            self.g[dst] = Vertex(dst)
 
-    def __contains__(self, key):
-        return key in self.vertList
-
-    def addEdge(self, f, t, weight=0):
-        if f not in self.vertList:
-            self.addVertex(f)
-        if t not in self.vertList:
-            self.addVertex(t)
-        self.vertList[f].addNeighbor(self.vertList[t], weight)
+        self.g[src].addConnection(dst, w)
+        if self.undirected:
+            self.g[dst].addConnection(src, w)
 
     def getVertices(self):
-        return self.vertList.keys()
+        return self.g.keys()
+
+    def __contains__(self, val):
+        return val in self.g
 
     def __iter__(self):
-        return iter(self.vertList.keys())
+        return iter(self.g)
+
+    def getVertex(self, val):
+        return self.g.get(val, None)

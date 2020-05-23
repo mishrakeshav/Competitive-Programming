@@ -4,27 +4,25 @@ from collections import deque
 
 
 def topological_sorting(g):
+    def dfs(g, ordering, v):
+        for node in v.getConnections():
+            vertex = g.getVertex(node)
+            if vertex.isVisited():
+                continue
+            dfs(g, ordering, vertex)
+        v.setVisited(True)
+        ordering.appendleft(v.val)
+
+    def helper(g, ordering):
+        for node in g:
+            vertex = g.getVertex(node)
+            if vertex.isVisited():
+                continue
+            dfs(g, ordering, vertex)
+
     ordering = deque()
     helper(g, ordering)
     return ordering
-
-
-def helper(g, ordering):
-    for node in g:
-        vertex = g.getVertex(node)
-        if vertex.isVisited():
-            continue
-        dfs(g, ordering, vertex)
-
-
-def dfs(g, ordering, v):
-    for node in v.getConnections():
-        vertex = g.getVertex(node)
-        if vertex.isVisited():
-            continue
-        dfs(g, ordering, vertex)
-    v.setVisited(True)
-    ordering.appendleft(v.val)
 
 
 if __name__ == '__main__':

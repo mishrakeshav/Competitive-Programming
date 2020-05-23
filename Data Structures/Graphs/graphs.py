@@ -9,6 +9,7 @@ class Vertex:
         self.color = 'white'
         self.previous = None
         self.distance = math.inf
+        self.degree = None
 
     def setColor(self, color):
         self.color = color
@@ -22,8 +23,12 @@ class Vertex:
     def setDistance(self, val):
         self.distance = val
 
+    def setDegree(self, val):
+        self.degree = val
+
     def addConnection(self, node, w=0):
         self.connections[node] = w
+        self.degree = len(self.connections)
 
     def getColor(self):
         return self.color
@@ -43,11 +48,18 @@ class Vertex:
     def getPrevious(self):
         return self.previous
 
+    def getDegree(self):
+        return self.degree
+
+    def __repr__(self):
+        return str(self.val)
+
 
 class Graph:
     def __init__(self, undirected=True):
         self.g = dict()
         self.undirected = undirected
+        self.size = 0
 
     def addVertex(self, val):
         self.g[val] = Vertex(val)
@@ -61,6 +73,9 @@ class Graph:
         self.g[src].addConnection(dst, w)
         if self.undirected:
             self.g[dst].addConnection(src, w)
+
+    def getSize(self):
+        return len(self.g)
 
     def getVertices(self):
         return self.g.keys()

@@ -7,13 +7,7 @@ class Vertex:
         self.val = val
         self.connections = dict()
         self.visited = False
-        self.color = 'white'
         self.previous = None
-        self.distance = math.inf
-        self.degree = None
-
-    def setColor(self, color):
-        self.color = color
 
     def setVisited(self, visited):
         self.visited = visited
@@ -21,36 +15,14 @@ class Vertex:
     def setPrevious(self, val):
         self.previous = val
 
-    def setDistance(self, val):
-        self.distance = val
-
-    def setDegree(self, val):
-        self.degree = val
-
     def addConnection(self, node, w=0):
         self.connections[node] = w
-        self.degree = len(self.connections)
-
-    def getColor(self):
-        return self.color
 
     def isVisited(self):
         return self.visited
 
     def getConnections(self):
         return self.connections
-
-    def getDistance(self):
-        return self.distance
-
-    def getEdgeWeight(self, val):
-        return self.connections.get(val)
-
-    def getPrevious(self):
-        return self.previous
-
-    def getDegree(self):
-        return self.degree
 
     def __repr__(self):
         return str(self.val)

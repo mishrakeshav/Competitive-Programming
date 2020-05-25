@@ -22,5 +22,4 @@ while s:
         e = s.popleft()
         decoded_message[k1] = e
         k1 -= 1
-
 print("".join(decoded_message))

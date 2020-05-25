@@ -1,3 +1,4 @@
+from graphs import Graph
 
 
 def detect_cyles_in_the_graph(g):

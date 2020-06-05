@@ -64,7 +64,6 @@ class Graph:
 
 
 def detect_cyles_in_the_graph(g):
-
     def dfs(v, g):
         v.setVisited(True)
         for node in v.getConnections():

@@ -1,7 +1,8 @@
 #include <bits/stdc++.h> 
 using namespace std; 
+int lookup_table[1000][1000];
 void solve(); 
-int coin_change(int n, int * coins, int numd, int lookup_table){
+int coin_change(int n, int * coins, int numd){
     if(n==0){
         return 1;
     }
@@ -12,13 +13,13 @@ int coin_change(int n, int * coins, int numd, int lookup_table){
         return 0;
     }
     if(lookup_table[n][numd] > 0){
-        return lookup_table[n];
+        return lookup_table[n][numd];
     }
 
-    int first = coin_change(n - coins[0], coins, numd, lookup_table);
-    int second = coin_change(n, coins + 1,numd-1, lookup_table);
+    int first = coin_change(n - coins[0], coins, numd);
+    int second = coin_change(n, coins + 1,numd-1);
     lookup_table[n][numd] = first + second;
-    return lookup_table[n][numd]
+    return lookup_table[n][numd];
 
 }
 int main() 
@@ -51,10 +52,8 @@ void solve()
     for(int i = 0; i < n; i++){
         cin >> coins[i];
     }
-    int * input = new int[n];
-    for(int i = 0; i < n; i++){
-        cin >> input[i];
-    }
+    
+    
     int lookup_table[n+1][numd + 1];
     for(int i = 0; i<= n; i++ ){
         for(int j = 0; j <= numd; j++){
@@ -62,6 +61,6 @@ void solve()
         }
     }
 
-    cout << coin_change(n, coins, numd, lookup_table) ;
+    cout << coin_change(n, coins, numd);
 
 } 

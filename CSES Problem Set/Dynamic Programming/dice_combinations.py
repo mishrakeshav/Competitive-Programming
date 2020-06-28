@@ -1,6 +1,6 @@
 
 lookup_table = [None]*(10**6 + 1)
-def dice_combinations(n, s):
+def dice_combinations(n):
     if n < 0:
         return 0
     if lookup_table[n]:
@@ -26,7 +26,7 @@ def dice_combinations(n, s):
     else:
         s = 0
         for i in range(1,7):
-            s += dice_combinations(n-i) + dice_combinations(i)
+            s += dice_combinations(n-i)
         return s 
 
 

@@ -6,29 +6,78 @@ You have to find out the minimum amount of points required at the starting point
 to reach from a, b to n , m in the grid. 
 The numbers of the grid can be negative. 
 The number of points at any index cannot be zero or negative
+Input : 
+1
+3 3
+-10 -1 -2
+5 -10 -3
+-20 -10 -1
+0 0
+
+Output: 
+18
+18 8 7 
+10 15 5 
+32 12 2 
+0 0
+18
+18 8 7 
+10 15 5 
+32 12 2 
+
+
 */
 int magic_grid_dp(int ** input, int a, int b, int n, int m, int ** output){
     if(input[n][m] > 0) output[n][m] = 0;
     else output[n][m] = abs(input[n][m]) + 1;
 
     for(int i = n-1 ; i >= 0 ; i-- ){
-        if(input[i][m] > 0) output[i][m] = output[i+1][m] ;
-        else output[i][m] = output[i+1][m] + abs(input[i][m]) + 1;
+        if(input[i][m] > 0){
+            if(input[i][m] >= output[i + 1][m]){
+                output[i][m] = 1;
+            }
+            else{
+                output[i][m] = output[i + 1][m] - input[i][m];
+            }
+            
+        }else{
+            output[i][m] = output[i + 1][m] + abs(input[i][m]);
+        } 
     } 
     for(int i = m - 1;i >= 0; i--){
-        if(input[n][i] > 0) output[n][i] = output[n][i+1];
-        else output[n][i] = output[n][i + 1] + abs(input[n][i]) + 1;
+        if(input[n][i] > 0){
+            if(input[n][i] >= output[n][i + 1]){
+                output[n][i] = input[n][i] - output[n][i + 1];
+            }
+            else{
+                output[n][i] = output[n][i + 1]- input[n][i];
+            }
+            
+        } 
+        else {
+            output[n][i] = output[n][i+ 1] + abs(input[n][i]) ;
+        }
     }
     int cost;
     for(int i = n - 1; i >= 0; i--){
         for(int j = m - 1; j >= 0; j--){
             cost = min(output[i + 1][j] , output[i][j + 1]);
-            if(input[i][j] > 0) output[i][j] = cost;
-            else output[i][j] = cost + abs(input[i][j]) + 1;
+            if(input[i][j] > 0){
+                if(input[i][j] >= cost){
+                    output[i][j] = 1;
+                }
+                else{
+                    output[i][j] = cost - input[i][j];
+                }
+                
+            } 
+            else{
+                output[i][j] = cost + abs(input[i][j]);
+            } 
         }
     }
     
-    return output[a][b] - input[a][b];
+    return output[a][b];
 }
 int magic_grid_recursion(int ** input,int a, int b ,int n, int m , int ** output){
     

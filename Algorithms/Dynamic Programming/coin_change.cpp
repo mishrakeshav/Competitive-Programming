@@ -1,6 +1,6 @@
 #include <bits/stdc++.h> 
 using namespace std; 
-int lookup_table[1000][1000];
+
 void solve(); 
 int coin_change(int n, int * coins, int numd){
     if(n==0){
@@ -26,12 +26,14 @@ int main()
 { 
     ios_base::sync_with_stdio(false); 
     cin.tie(NULL); 
-  
+
+/*  
 #ifndef ONLINE_JUDGE 
     freopen("input.txt", "r", stdin); 
     freopen("error.txt", "w", stderr); 
     freopen("output.txt", "w", stdout); 
 #endif 
+*/
   
     int t = 1; 
     cin >> t; 
@@ -41,15 +43,14 @@ int main()
     
     } 
   
-    cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl; 
+    //cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl; 
     return 0; 
 } 
 void solve() 
 {   int n, numd;
-    cin >> n;
-    cin >> numd;
+    cin >> numd >> n;
     int * coins = new int [numd];
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < numd; i++){
         cin >> coins[i];
     }
     

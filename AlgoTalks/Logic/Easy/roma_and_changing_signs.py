@@ -9,20 +9,28 @@ def input(): return stdin.readline().strip()
 def solve():
     n, k = map(int, input().split())
     a = list(map(int,input().split()))
+    a.sort()
     for i in range(n):
         if a[i] < 0 and k:
             a[i] *=-1 
             k -= 1 
         else:
-            break
+            break 
+
     if k%2:
         m = float('inf')
-        idx = -1 
+        index = -1 
         for i in range(n):
             if a[i] < m:
                 m = a[i]
-                idx = i 
-        a[idx] *=-1 
+                index = i 
+        a[index] *= -1 
+    
+    
+            
+
+
+
     s = sum(a)
     print(s)
         

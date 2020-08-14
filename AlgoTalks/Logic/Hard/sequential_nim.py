@@ -9,26 +9,18 @@ def input(): return stdin.readline().strip()
 def solve():
     n = int(input())
     a = list(map(int, input().split()))
-    count = 0
-    for i in a:
-        if i == 1:
-            count += 1 
-    if count == n:
-        if count%2:
-            print('First')
-        else:
-            print('Second')
+    first = 'First'
+    second = 'Second'
+    ones = 0
+    for i in range(n):
+        if a[i] !=1:
+            break 
+        ones += 1
+    if i%2==1:
+        winner = second
     else:
-        if count%2:
-            print('Second')
-        else:
-            print('First')
-            
- 
-
-        
-        
-        
+        winner = first
+    print(winner)
 
 
 if __name__ == '__main__':

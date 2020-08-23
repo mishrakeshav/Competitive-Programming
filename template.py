@@ -6,14 +6,8 @@ from sys import stdin,stdout
 from collections import Counter , deque
 from queue import PriorityQueue
 
-helperVariable = False
 helperConstants = True 
 helperUtilityFunctions = True 
-
-if helperVariable:
-    helperConstants = True  
-    helperUtilityFunctions = True
-
 
 def input(): return stdin.readline().strip()
 # def print(s): stdout.write(str(s)+'\n')

@@ -1,5 +1,5 @@
 """
-Problem link: 
+Problem link: http://codeforces.com/contest/186/problem/B
 Solution By Keshav Mishra 
 """
 from sys import stdin,stdout
@@ -55,11 +55,31 @@ if helperUtilityFunctions:
     
     
 
-def solve(t):
-    pass 
-    
 
+def solve():
+    n, t1, t2, k = getIntegerInputs()
+    participants = []
+    k = 1 - k*0.01
+    for i in range(n):
+        a, b = getIntegerInputs()
+        ans1 = 0
+        ans2 = 0 
+        ans1 += a*t1 
+        ans1 = ans1*k
+        ans1 += b*t2 
+        ans2 += b*t1 
+        ans2 = ans2*k 
+        ans2 += a*t2 
+        ans = max(ans1,ans2)
+        participants.append({'index':i + 1, 'value':ans})
+    participants.sort(reverse = True, key = lambda x : x['value'])
+    for participant in participants:
+        print('%d %.2f'%(participant['index'], participant['value']))
+
+
+
+
+    
 if __name__ == '__main__':
-    for t in range(int(input())):
-        solve(t+1)
+    solve()
     

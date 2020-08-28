@@ -1,0 +1,50 @@
+slow = 6
+fast = 6     
+1-2-3-4-5-None
+1->2->3->4->5->6--->\
+      |              |
+      |_____________/  
+ 
+
+1->2->3->4->5->6->7->2 
+
+fast 1 3 5 7 3 5 7 3 5 7 3 5 7 3 5 7 3 5 7
+slow 1 2 3 4 5 6 7
+
+fast = 7 2 
+slow = 1 2 
+
+1->2->3->4->5->6->7->8->5 
+
+fast = 1 3 5 7 5 7 5 7 5 7  
+slow = 1 2 3 4 5 
+
+fast = 5 6 7 8 5 6 7 8 5 
+slow = 1 2 3 4 5
+
+
+Proof 
+slow travels x + y nodes 
+fast travels (x + y + z) + y 
+
+(x + 2y + z )/t  = 2(x + y)/t 
+(x + 2y + z) = 2x + 2y 
+x + z = 2x 
+x = z 
+
+
+one = Node(-1, ll = 'og')
+two = Node(0,ll = 'og')
+three = Node(3,ll = 'og')
+four = Node(4,ll = 'og')
+head = one 
+
+one.next = two 
+two.next = three
+three.next = four 
+one.random = four
+two.random = two 
+three.random = one 
+
+s1 = Solution()
+s1.copyRandomList(head)

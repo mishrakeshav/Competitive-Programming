@@ -8,29 +8,29 @@ class Node:
         self.ll = ll
 
 
-# Approach 1 
-# class Solution:
-#     def copyRandomList(self, head: 'Node') -> 'Node':
-#         if head is None:
-#             return head 
-#         hashmap = dict()
-#         def helper(head):
-#             newHead = Node(-1)
-#             current = newHead
-#             while head:
-#                 current.next = Node(head.val)
-#                 hashmap[head] = current.next 
-#                 head = head.next
-#                 current = current.next 
-#             return newHead.next
-#         newHead = helper(head)
-#         current1 = newHead 
-#         current2 = head 
-#         while current1 and current2:
-#             current1.random = None if not current2.random else hashmap[current2.random]
-#             current1 = current1.next 
-#             current2 = current2.next 
-#         return newHead
+Approach 1 
+class Solution:
+    def copyRandomList(self, head: 'Node') -> 'Node':
+        if head is None:
+            return head 
+        hashmap = dict()
+        def helper(head):
+            newHead = Node(-1)
+            current = newHead
+            while head:
+                current.next = Node(head.val)
+                hashmap[head] = current.next 
+                head = head.next
+                current = current.next 
+            return newHead.next
+        newHead = helper(head)
+        current1 = newHead 
+        current2 = head 
+        while current1 and current2:
+            current1.random = None if not current2.random else hashmap[current2.random]
+            current1 = current1.next 
+            current2 = current2.next 
+        return newHead
 
 # Approach 2 
 class Solution:

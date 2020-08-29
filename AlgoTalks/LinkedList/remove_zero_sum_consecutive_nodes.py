@@ -5,7 +5,23 @@ class ListNode:
         self.next = next
 class Solution:
     def removeZeroSumSublists(self, head: ListNode) -> ListNode:
-        pass 
-        
+        ptr = ListNode(-1)
+        ptr.next = head 
+        current = head 
+        head = ptr 
+        while head:
+            s = 0 
+            while current:
+                s += current.val 
+                if s == 0:
+                    head.next = current.next 
+            
+                current = current.next 
+            head = head.next 
+            if head:
+                current = head.next 
+    
+        return ptr.next 
+         
 
             

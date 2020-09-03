@@ -76,6 +76,113 @@ def printLL(head):
         print(head.val, end = '->')
     print(None)
 
+
+def reverse(head):
+    if head is None:
+        return head 
+    newlist = []
+    current = head
+    while current:
+        newlist.append(current)
+        current = current.next 
+    
+    n = len(newlist)
+    newlist[0].next = None 
+    for i in range(1,n):
+        newlist[i].next = newlist[i-1]
+    return newlist[-1]
+
+
+
+def reverse(head):
+    if head is None:
+        return head 
+    
+    prev = None 
+    current = head 
+    next = current.next 
+    while current:
+        next = current.next 
+        current.next = prev 
+        prev = current
+        current = next 
+    return prev 
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+def reverse(head):
+    if head is None:
+        return None 
+    
+    newlist = []
+    current = head 
+    while current is not None:
+        newlist.append(current)
+        current = current.next 
+    # O(N)
+    n = len(newlist)
+    for i in range(1,n):
+        newlist[i].next = newlist[i-1]
+    newlist[0].next = None 
+     
+
+
+
+
+
+
+
+
+
+
+
+
+def reverse(head):
+    if head is None:
+        return 
+    
+    prev = None 
+    current = head 
+    while current:
+        next = current.next 
+        current.next = prev
+        prev = current
+        current = next 
+    
+    return prev 
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def reverse(head):
     if head is None:
         return head 

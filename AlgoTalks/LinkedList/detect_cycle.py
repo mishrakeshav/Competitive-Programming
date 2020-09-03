@@ -5,6 +5,7 @@
 #         self.next = None
  
 # Approach 1 
+# O(N) - Space 
 class Solution:
     def detectCycle(self, head: ListNode) -> ListNode:
         hashmap = set()
@@ -17,6 +18,59 @@ class Solution:
             else:
                 hashmap.add(node)
             node = node.next 
+
+def detect(head):
+    if head is None:
+        return 
+    hashmap = set()
+    curr = head 
+    while curr:
+        if curr in hashmap:
+            return curr
+        hashmap.add(curr)
+    return None 
+
+def detect(head):
+    if head is None:
+        return
+    slow = head 
+    fast = head 
+    flag = None 
+    while fast and fast.next :
+        slow = slow.next 
+        fast = fast.next.next 
+        if slow == fast:
+            flag = fast 
+            break 
+        
+    if flag:
+        return 
+    iter1 = head 
+    iter2 = flag
+    while iter1 and iter2:
+        if iter1 is iter2:
+            return iter1 
+        iter1 = iter1.next 
+        iter2 = iter2.next 
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Approach 2 
 class Solution:

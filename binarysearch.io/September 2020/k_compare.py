@@ -21,5 +21,4 @@ class Solution:
                     break 
             count += c 
         return count
-
-
+        

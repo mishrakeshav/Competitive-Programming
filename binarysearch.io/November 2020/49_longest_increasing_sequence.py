@@ -1,4 +1,17 @@
-# recursive approach 
+# dynamic programming 
+class Solution:
+    def solve(self, nums):
+        n = len(nums)
+        if n == 0:
+            return n
+        d = [1]*n
+        for i in range(n):
+            for j in range(i-1,-1,-1):
+                if nums[j] < nums[i]:
+                    d[i] = max(d[i],d[j]+1)
+        return max(d) 
+
+# recursive  
 class Solution:
     def solve(self, nums):
         n = len(nums)
@@ -19,7 +32,7 @@ class Solution:
             return max_len 
         return helper(nums,1,nums[0],1)
                 
-        
+
         
         
             

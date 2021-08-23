@@ -1,10 +1,5 @@
-"""
-Problem link: 
-Solution By Keshav Mishra 
-"""
 from math import ceil,floor, factorial as fact, inf 
 from copy import deepcopy
-from collections import Counter,deque
 def get_list():
     return list(map(int,input().split()))
 def get_int():
@@ -20,4 +15,3 @@ for t in range(get_int()):
     
     ans = sum(dp)
     print(ans)
-    
